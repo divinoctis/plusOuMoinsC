@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
+
+int saisirEntier() {
+    int nombre;
+    while (scanf("%d", &nombre) != 1) {
+        printf("Veuillez saisir un entier valide : ");
+    }
+    return nombre;
+}
+
+int saisirEntierBorne(int min, int max) {
+    int nombre;
+    while (true) {
+        nombre = saisirEntier();
+        if (nombre >= min && nombre <= max) {
+            break;
+        }
+        printf("Veuillez saisir un entier entre %d et %d : ", min, max);
+    }
+    return nombre;
+}
+
+int main() {
+    srand(time(NULL));
+
+    int min = 1, max = 100;
+
+    while (true) {
+        int nombreMystere = rand() % 101;
+        int nombreEssais = 0;
+        int tentative;
+
+        printf("Trouvez le nombre mystere entre %d et %d :\n", min, max);
+
+        while (nombreEssais <= 10) {
+            printf("Entrez votre proposition : ");
+            tentative = saisirEntierBorne(min, max);
+            nombreEssais++;
+
+            if (tentative == nombreMystere) {
+                printf("Félicitations, vous avez trouvé le nombre mystère en %d essais !\n", nombreEssais);
+                break;
+            } else if (tentative < nombreMystere) {
+                printf("Plus !\n");
+            } else {
+                printf("Moins !\n");
+            }
+
+            if (nombreEssais >= 10) {
+                printf("Vous avez dépassé le nombre d'essais autorisés. Le nombre mystère était : %d\n", nombreMystere);
+                break;
+            }
+        }
+    }
+
+    return 0;
+}
