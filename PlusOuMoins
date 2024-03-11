@@ -93,3 +93,4 @@ int main() {
         // Faire des fonctions génériques pour une saisie robuste        FAIT
         // Utiliser ces fonctions pour demander à l’utilisateur de choisir les bornes de départ, de deviner le nombre mystère, et de recommencer une partie        FAIT
         // Lorsque la partie est terminée, afficher la liste de tous les nombres mystères devinés depuis le lancement du programme.        A FAIRE
+        // ajouter fonction pour que la borne min ne soit pas supérieure à la borne max
