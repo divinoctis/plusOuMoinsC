@@ -49,8 +49,9 @@ int main() {
     srand(time(NULL));
     int nombreMin, nombreMax;
     char rejouerChar;
+    bool rejouer = true;
 
-    do {
+    while (rejouer) {
         bornesMinMax(&nombreMin, &nombreMax);
 
         int nombreMystere = nombreMin + rand() % (nombreMax - nombreMin + 1);
@@ -82,7 +83,10 @@ int main() {
         printf("Voulez-vous rejouer ? (y/n) : ");
         rejouerChar = saisirChar();
 
-    } while (rejouerChar == 'y' || rejouerChar == 'Y');
+        if (rejouerChar != 'y' && rejouerChar != 'Y') {
+            rejouer = false;
+        }
+    }
 
     return 0;
 }
