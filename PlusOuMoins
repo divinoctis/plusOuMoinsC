@@ -7,38 +7,61 @@ int saisirEntier() {
     int nombre;
     while (scanf("%d", &nombre) != 1) {
         printf("Veuillez saisir un entier valide : ");
+        while (getchar() != '\n');
     }
     return nombre;
 }
 
-int saisirEntierBorne(int min, int max) {
+int saisirEntierBorne(int nombreMin, int nombreMax) {
     int nombre;
-    while (true) {
+    while (1) {
         nombre = saisirEntier();
-        if (nombre >= min && nombre <= max) {
+        if (nombre >= nombreMin && nombre <= nombreMax) {
             break;
         }
-        printf("Veuillez saisir un entier entre %d et %d : ", min, max);
+        printf("Veuillez saisir un entier entre %d et %d : ", nombreMin, nombreMax);
     }
     return nombre;
+}
+
+void bornesMinMax(int* nombreMin, int* nombreMax) {
+    printf("Entrez une valeur minimale : ");
+    *nombreMin = saisirEntier();
+    
+    printf("Entrez une valeur maximale : ");
+    *nombreMax = saisirEntier();
+}
+
+char saisirChar() {
+    char c;
+    int iErreur = scanf(" %c", &c);
+
+    if (iErreur == 0 || (c != 'y' && c != 'Y' && c != 'n' && c != 'N')) {
+        printf("Veuillez saisir 'y', 'n', 'Y' ou 'N'.\n");
+        return saisirChar();
+    } else {
+        printf("Vous avez saisi %c\n", c);
+        return c;
+    }
 }
 
 int main() {
     srand(time(NULL));
+    int nombreMin, nombreMax;
+    char rejouerChar;
 
-    int min = 1, max = 100;
+    do {
+        bornesMinMax(&nombreMin, &nombreMax);
 
-    while (true) {
-        int nombreMystere = rand() % 101;
+        int nombreMystere = nombreMin + rand() % (nombreMax - nombreMin + 1);
         int nombreEssais = 0;
         int tentative;
 
-        printf("Trouvez le nombre mystere entre %d et %d :\n", min, max);
+        printf("Trouvez le nombre mystere entre %d et %d :\n", nombreMin, nombreMax);
 
         while (nombreEssais <= 10) {
             printf("Entrez votre proposition : ");
-            tentative = saisirEntierBorne(min, max);
-            nombreEssais++;
+            tentative = saisirEntierBorne(nombreMin, nombreMax);
 
             if (tentative == nombreMystere) {
                 printf("Félicitations, vous avez trouvé le nombre mystère en %d essais !\n", nombreEssais);
@@ -53,8 +76,20 @@ int main() {
                 printf("Vous avez dépassé le nombre d'essais autorisés. Le nombre mystère était : %d\n", nombreMystere);
                 break;
             }
+            nombreEssais++;
         }
-    }
+        
+        printf("Voulez-vous rejouer ? (y/n) : ");
+        rejouerChar = saisirChar();
+
+    } while (rejouerChar == 'y' || rejouerChar == 'Y');
 
     return 0;
 }
+
+        // Ajouter un nombre d'essais et afficher un message de défaite si le joueur le dépasse.        FAIT
+        // Proposer au joueur de fixer les bornes du nombre aléatoire en début de partie.        FAIT
+        // Proposer au joueur de recommencer une partie (saisir une des lettres suivantes: “y”, “n”, “Y”, “N”).        FAIT
+        // Faire des fonctions génériques pour une saisie robuste        FAIT
+        // Utiliser ces fonctions pour demander à l’utilisateur de choisir les bornes de départ, de deviner le nombre mystère, et de recommencer une partie        FAIT
+        // Lorsque la partie est terminée, afficher la liste de tous les nombres mystères devinés depuis le lancement du programme.        A FAIRE
