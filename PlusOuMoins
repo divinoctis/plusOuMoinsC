@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 
-int intInput() {
+int intInput() { // ici vérifie que ce qui est entré est bien un chiffre et non une lettre
     int number;
     while (scanf("%d", &number) != 1) {
         printf("Veuillez saisir un entier valide : ");
@@ -12,7 +12,7 @@ int intInput() {
     return number;
 }
 
-void borneMinMax(int* numberMin, int* numberMax) {
+void borneMinMax(int* numberMin, int* numberMax) { // là vérifie si au niveau des bornes la valeur min est pas supérieure au max
         printf("Entrez une valeur minimale : ");
         *numberMin = intInput();
         
@@ -30,7 +30,7 @@ void borneMinMax(int* numberMin, int* numberMax) {
     } 
 }
 
-int intBorne(int numberMin, int numberMax) {
+int intBorne(int numberMin, int numberMax) { // qd on joue vérifie que ce soit bien un chiffre d'entré ENTRE les bornes
     int number;
     while (1) {
         number = intInput();
@@ -42,7 +42,7 @@ int intBorne(int numberMin, int numberMax) {
     return number;
 }
 
-char inputChar() {
+char inputChar() { // vérifie juste si le joueur répond autre chose que ce qui est indiqué (basé sur slide prof)
     char c;
     int iError = scanf(" %c", &c);
 
@@ -55,7 +55,7 @@ char inputChar() {
     }
 }
 
-int main() {
+int main() { // fonction principale du jeu
     srand(time(NULL));
     int numberMin, numberMax;
     char restart;
@@ -67,7 +67,7 @@ int main() {
         int mysteryNumber = numberMin + rand() % (numberMax - numberMin + 1);
         int guessed = 1;
         int guessedNumber = 0;
-        int* guessList = malloc(10 * sizeof(int));
+        int* guessList = malloc(10 * sizeof(int)); // tableau de 10 MAX pcq y'a que 10 essais
 
         printf("Trouvez le nombre mystère entre %d et %d :\n", numberMin, numberMax);
 
@@ -80,7 +80,7 @@ int main() {
                 printf("Félicitations, vous avez trouvé le nombre mystère en %d essais !\n", guessed);
                 printf("Voici la liste des nombres que vous avez devinés :\n");
                 
-                for (int i = 0; i < guessed; i++) { // test tableau
+                for (int i = 0; i < guessed; i++) { // pour création de la liste etc, rajoute une case au tableau
                     printf("%d ", guessList[i]);
                 }
                 printf("\n");
@@ -98,7 +98,7 @@ int main() {
                 printf("Vous avez dépassé le nombre d'essais autorisés. Le nombre mystère était : %d\n", mysteryNumber);
                 printf("Voici la liste des nombres que vous avez devinés :\n");
                 
-                for (int i = 0; i < guessed; i++) { // test tableau
+                for (int i = 0; i < guessed; i++) { // répétition ici pour le tableau
                     printf("%d ", guessList[i]);
                 }
                 printf("\n");
@@ -119,4 +119,4 @@ int main() {
     return 0;
 }
 
-        // Lorsque la partie est terminée, afficher la liste de tous les nombres mystères devinés depuis le lancement du programme.
+// beaucoup de choses possibles à simplifier oui..
