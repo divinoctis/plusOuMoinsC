@@ -66,25 +66,26 @@ int main() {
 
         int mysteryNumber = numberMin + rand() % (numberMax - numberMin + 1);
         int guessed = 1;
-        int guessedNumber, i = 0;
-        int* guessList = NULL;
+        int guessedNumber = 0;
+        int* guessList = malloc(10 * sizeof(int));
 
         printf("Trouvez le nombre mystère entre %d et %d :\n", numberMin, numberMax);
 
         while (guessed <= 10) {
             printf("Entrez votre proposition : ");
             guessedNumber = intBorne(numberMin, numberMax);
+            guessList[guessed - 1] = guessedNumber;
 
             if (guessedNumber == mysteryNumber) {
                 printf("Félicitations, vous avez trouvé le nombre mystère en %d essais !\n", guessed);
                 printf("Voici la liste des nombres que vous avez devinés :\n");
                 
-                guessList = malloc(guessedNumber * sizeof(int));
-                
-                for (int i = 0; i <= guessedNumber; i++) {
-                printf("%d ", guessList[i]);
-                break;
+                for (int i = 0; i < guessed; i++) { // test tableau
+                    printf("%d ", guessList[i]);
                 }
+                printf("\n");
+
+                break;
                 
             } else if (guessedNumber < mysteryNumber) {
                 printf("Plus !\n");
@@ -95,6 +96,13 @@ int main() {
 
             if (guessed >= 10) {
                 printf("Vous avez dépassé le nombre d'essais autorisés. Le nombre mystère était : %d\n", mysteryNumber);
+                printf("Voici la liste des nombres que vous avez devinés :\n");
+                
+                for (int i = 0; i < guessed; i++) { // test tableau
+                    printf("%d ", guessList[i]);
+                }
+                printf("\n");
+
                 break;
             }
             guessed++;
