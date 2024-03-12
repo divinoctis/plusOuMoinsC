@@ -65,10 +65,9 @@ int main() {
         borneMinMax(&numberMin, &numberMax);
 
         int mysteryNumber = numberMin + rand() % (numberMax - numberMin + 1);
-        int guessed = 0;
-        int guessedNumber;
-        int* guessList[guessed] = guessedNumber;
-        guessList[] = malloc(guessed * sizeof(int));
+        int guessed = 1;
+        int guessedNumber, i = 0;
+        int* guessList = NULL;
 
         printf("Trouvez le nombre mystère entre %d et %d :\n", numberMin, numberMax);
 
@@ -80,9 +79,12 @@ int main() {
                 printf("Félicitations, vous avez trouvé le nombre mystère en %d essais !\n", guessed);
                 printf("Voici la liste des nombres que vous avez devinés :\n");
                 
-                for (int i = 0; i <= guessed; i++) {
-                printf("%d ", guessList[]);
+                guessList = malloc(guessedNumber * sizeof(int));
+                
+                for (int i = 0; i <= guessedNumber; i++) {
+                printf("%d ", guessList[i]);
                 break;
+                }
                 
             } else if (guessedNumber < mysteryNumber) {
                 printf("Plus !\n");
