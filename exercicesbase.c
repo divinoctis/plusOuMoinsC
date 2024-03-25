@@ -266,7 +266,33 @@
 ///////////////////////////////////////////// TABLEAUX ////////////////////////////////////////////
 
 //////// EXO 1
-int main()
-{
-    int tab[];
+#define MAX 100
+
+int main() {
+    int n;
+    
+    printf("Entrez le nombre d'entiers que vous souhaitez saisir: ");
+    scanf("%d", &n);
+    
+    int tableau[n];
+    
+    printf("Entrez %d entiers inférieurs à 100: ", n);
+    
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &tableau[i]);
+    }
+
+    int occurrences[MAX] = {0};
+    
+    for (int i = 0; i < n; i++) {
+        occurrences[tableau[i]]++;
+    }
+    
+    for (int i = 0; i < MAX; i++) {
+        if (occurrences[i] > 0) {
+            printf("%d est répété %d fois.", i, occurrences[i]);
+        }
+    }
+    
+    return 0;
 }
