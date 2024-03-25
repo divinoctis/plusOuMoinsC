@@ -268,7 +268,7 @@
 //////// EXO 1
 #include <stdlib.h>
 
-int main() {
+/*int main() {
     int n;
     
     printf("Entrez le nombre d'entiers que vous souhaitez saisir: ");
@@ -312,3 +312,47 @@ int main() {
     free(occurrences);
     return 0;
 }
+
+void triBulle(int tab[], int n) { // trouvé à l'aide d'internet, à revoir car pas trop capté
+    int i, j, temp;
+    for (i = 0; i < n-1; i++)
+    {
+        for (j = 0; j < n-i-1; j++)
+        {
+            if (tab[j] > tab[j+1])
+            {
+                temp = tab[j];
+                tab[j] = tab[j+1];
+                tab[j+1] = temp;
+            }
+        }
+    }
+}*/
+
+//////// EXO 2
+/*int main() {
+    int n;
+    
+    printf("Entrez la taille du tableau: ");
+    scanf("%d", &n);
+    
+    int tab[n];
+    
+    printf("Entrez %d entiers: ", n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &tab[i]);
+    }
+    
+    triBulle(tab, n);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf(" %d |", tab[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}*/
+
+//////// EXO 3
