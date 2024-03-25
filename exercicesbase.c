@@ -356,3 +356,11 @@ void triBulle(int tab[], int n) { // trouvé à l'aide d'internet, à revoir car
 }*/
 
 //////// EXO 3
+/* int main() {
+	//// ah
+}*/
+
+//////// EXO 4
+int main() {
+	// à faire du coup
+}
