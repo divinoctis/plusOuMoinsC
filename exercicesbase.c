@@ -266,7 +266,7 @@
 ///////////////////////////////////////////// TABLEAUX ////////////////////////////////////////////
 
 //////// EXO 1
-#define MAX 100
+#include <stdlib.h>
 
 int main() {
     int n;
@@ -278,21 +278,37 @@ int main() {
     
     printf("Entrez %d entiers inférieurs à 100: ", n);
     
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         scanf("%d", &tableau[i]);
     }
 
-    int occurrences[MAX] = {0};
+    int *occurrences = (int*)malloc(100 * sizeof(int));
     
-    for (int i = 0; i < n; i++) {
+    if (occurrences == NULL)
+    {
+        printf("Erreur d'allocation de mémoire.\n");
+        return 1;
+    }
+    
+    for (int i = 0; i < 100; i++) // en gros ça initialise les valeurs à 0 dans le tableau pour bien que ça compte
+    {
+        occurrences[i] = 0;
+    }
+    
+    for (int i = 0; i < n; i++) // parcourt tableau et incrémente occurences
+    {
         occurrences[tableau[i]]++;
     }
     
-    for (int i = 0; i < MAX; i++) {
-        if (occurrences[i] > 0) {
-            printf("%d est répété %d fois.", i, occurrences[i]);
+    for (int i = 0; i < 100; i++)
+    {
+        if (occurrences[i] > 0)
+        {
+            printf("%d est répété %d fois.\n", i, occurrences[i]);
         }
     }
     
+    free(occurrences);
     return 0;
 }
