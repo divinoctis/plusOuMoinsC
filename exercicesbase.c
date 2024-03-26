@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 ///////////////////////////////////////////// CONDITIONS /////////////////////////////////////////////
 //////// EXO 1
@@ -266,41 +267,41 @@
 ///////////////////////////////////////////// TABLEAUX ////////////////////////////////////////////
 
 //////// EXO 1
-#include <stdlib.h>
+
 
 /*int main() {
     int n;
-    
+
     printf("Entrez le nombre d'entiers que vous souhaitez saisir: ");
     scanf("%d", &n);
-    
+
     int tableau[n];
-    
+
     printf("Entrez %d entiers inférieurs à 100: ", n);
-    
+
     for (int i = 0; i < n; i++)
     {
-        scanf("%d", &tableau[i]);
+        scanf_s("%d", &tableau[i]);
     }
 
     int *occurrences = (int*)malloc(100 * sizeof(int));
-    
+
     if (occurrences == NULL)
     {
         printf("Erreur d'allocation de mémoire.\n");
         return 1;
     }
-    
+
     for (int i = 0; i < 100; i++) // en gros ça initialise les valeurs à 0 dans le tableau pour bien que ça compte
     {
         occurrences[i] = 0;
     }
-    
+
     for (int i = 0; i < n; i++) // parcourt tableau et incrémente occurences
     {
         occurrences[tableau[i]]++;
     }
-    
+
     for (int i = 0; i < 100; i++)
     {
         if (occurrences[i] > 0)
@@ -308,59 +309,146 @@
             printf("%d est répété %d fois.\n", i, occurrences[i]);
         }
     }
-    
+
     free(occurrences);
     return 0;
-}
-
-void triBulle(int tab[], int n) { // trouvé à l'aide d'internet, à revoir car pas trop capté
-    int i, j, temp;
-    for (i = 0; i < n-1; i++)
-    {
-        for (j = 0; j < n-i-1; j++)
-        {
-            if (tab[j] > tab[j+1])
-            {
-                temp = tab[j];
-                tab[j] = tab[j+1];
-                tab[j+1] = temp;
-            }
-        }
-    }
 }*/
 
 //////// EXO 2
 /*int main() {
     int n;
-    
+
     printf("Entrez la taille du tableau: ");
     scanf("%d", &n);
-    
+
     int tab[n];
-    
+
     printf("Entrez %d entiers: ", n);
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &tab[i]);
     }
-    
-    triBulle(tab, n);
 
-    for (int i = 0; i < n; i++)
     {
-        printf(" %d |", tab[i]);
+        int i, j, temp;
+
+        for (i = 0; i < n - 1; i++) // ici parcours le tableau dès l'index 0, jusqu'à n - 1 car dernière valeur sera forcément la plus grande à la fin du tri.
+        {
+            for (j = 0; j < n - i - 1; j++) // ici parcours les éléments non triés tant que j est inférieur à n - i - 1..
+            {
+                if (tab[j] > tab[j + 1]) // refais un échange entre les chiffres dans le tableau en les stockant dans une variable temporaire si la condition est vraie.
+                {
+                    temp = tab[j];
+                    tab[j] = tab[j + 1];
+                    tab[j + 1] = temp;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            printf(" %d |", tab[i]);
+        }
+        printf("\n");
+
+        return 0;
     }
-    printf("\n");
-    
-    return 0;
 }*/
 
 //////// EXO 3
-/* int main() {
-	//// ah
+/*int main() {
+    int n;
+
+    printf("Entrez la taille du tableau: ");
+    scanf("%d", &n);
+
+    int tab[n];
+
+    printf("Entrez %d entiers: ", n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &tab[i]);
+    }
+
+
+    // tri par insertion
+
+    return 0;
 }*/
 
 //////// EXO 4
-int main() {
-	// à faire du coup
+/*int main() {
+    int n = 8;
+    int temp;
+
+
+    int tab[] = { 2, 4, 3, 5, 5, 9, 2, 9 };
+
+    // tri à bulle
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (tab[j] > tab[j + 1])
+            {
+                temp = tab[j];
+                tab[j] = tab[j + 1];
+                tab[j + 1] = temp;
+
+            }
+        }
+      }
+
+    int iCurrentValue = -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (iCurrentValue != tab[i]) {      / au début iCurrentValue vaudra -1 donc on entre dans la boucle, ensuite il prend la valeur de la case du tableau et si cette valeur est en double il rentrera pas donc print pas la valeur en double tant qu'elle est pas différente sur une autre case
+            printf("%d | ", tab[i]);
+            iCurrentValue = tab[i];
+        }
+
+    }
+
+    return 0;
+}*/
+
+///////////////////////////////////////////// CHAINES DE CARACTERES ////////////////////////////////////////////
+
+//////// EXO 1
+int main()
+{
+    char* string = (char*)malloc(sizeof(char) * 5);
+
+    if (string == NULL)
+        exit(0);
+
+    string[0] = '1';
+    string[1] = '2';
+    string[2] = '3';
+    string[3] = '2';
+    string[4] = '1';
+
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%c", string[i]);
+    }
+
+    int iterateur = 0;
+
+    for (int i = 0; i < 5; i++)
+    {
+        while (string[iterateur] != '\0'){
+                if( )
+            {
+                printf("Cette chaîne de caractère est palindrome.");
+            }
+            else
+            {
+                printf("Cette chaîne de caractère n'est pas palindrome.");
+            }
+        }
+    }
+
+    return 0;
 }
