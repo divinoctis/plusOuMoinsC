@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 ///////////////////////////////////////////// CONDITIONS /////////////////////////////////////////////
 //////// EXO 1
@@ -354,7 +356,6 @@
         return 0;
     }
 }*/
-
 //////// EXO 3
 /*int main() {
     int n;
@@ -416,39 +417,138 @@
 ///////////////////////////////////////////// CHAINES DE CARACTERES ////////////////////////////////////////////
 
 //////// EXO 1
-int main()
+/*int main()
 {
-    char* string = (char*)malloc(sizeof(char) * 5);
+    char string[100];
 
-    if (string == NULL)
-        exit(0);
-
-    string[0] = '1';
-    string[1] = '2';
-    string[2] = '3';
-    string[3] = '2';
-    string[4] = '1';
-
-    for (int i = 0; i < 5; i++)
-    {
-        printf("%c", string[i]);
-    }
+    printf("Entrez une chaîne de caractère: ");
+    scanf_s("%s", string);
 
     int iterateur = 0;
+    int longueurChaine = strlen(string);
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < longueurChaine / 2; i++)
     {
         while (string[iterateur] != '\0'){
-                if( )
+                if( string[i] != string[longueurChaine - i - 1])
             {
-                printf("Cette chaîne de caractère est palindrome.");
+                printf("Cette chaîne de caractère n'est pas palindrome.");
+                return 0;
             }
             else
             {
-                printf("Cette chaîne de caractère n'est pas palindrome.");
+                printf("Cette chaîne de caractère est palindrome.");
+                return 1;
             }
         }
     }
+
+    return 0;
+}*/
+
+//////// EXO 2
+/*int main() {
+    char string1[100];
+    char string2[100];
+
+    printf("Entrez deux chaînes de caractère : ");
+    scanf_s("%s %s", string1, string2);
+
+    int i;
+
+    while (string1[i] != '\0' && string2[i] != '\0')
+    {
+        if (string1[i] < string2[i])
+        {
+            printf("%s, %s", string1, string2);
+            break;
+        }
+        else if (string1[i] > string2[i])
+        {
+            printf("%s, %s", string2, string1);
+            break;
+        }
+        i++;
+    }
+
+    return 0;
+}*/
+
+//////// EXO 3
+/*int main()
+{
+    char string[100];
+    int i;
+
+    printf("Entrez une chaîne de caractère: ");
+    scanf_s("%s", string);
+
+    while (string[i] != '\0')
+    {
+        if (string[i] >= 'a' && string[i] <= 'z')
+        {
+            string[i] = toupper(string[i]);
+        }
+
+        else
+        {
+            string[i] = tolower(string[i]);
+        }
+        i++;
+    }
+
+    printf("%s", string);
+
+    return 0;
+}*/
+
+///////////////////////////////////////////// STRUCTURE ////////////////////////////////////////////
+
+//////// EXO 1
+/*typedef struct Point
+{
+    int x;
+    int y;
+} Point;
+
+int main()
+{
+    Point p;
+    int d = 0;
+
+    printf("Veuillez entrer 2 coordonnées: ");
+    scanf_s("%d%d", &p.x, &p.y);
+
+    if (p.x > p.y)
+    {
+        d = p.x - p.y;
+    }
+    else
+    {
+        d = p.y - p.x;
+    }
+
+    printf("La distance entre le point %d et %d est de %d", p.x, p.y, d);
+
+    return 0;
+}*/
+
+//////// EXO 2
+typedef struct Etudiant
+{
+    char nom;
+    char prenom;
+    int note;
+}Etudiant;
+
+int main()
+{
+    Etudiant data;
+
+    printf("Veuillez entrer votre nom, prénom et une note sur 20: ");
+    scanf_s("%c%c%d", &data.nom, &data.prenom, &data.note);
+
+    int listeEtudiant[100];
 
     return 0;
 }
